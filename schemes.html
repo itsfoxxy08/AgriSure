@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Schemes - AgriSure</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <img src="logo.jpg" alt="AgriSure Logo" class="logo-img">
+            <span data-en="AgriSure" data-hi="एग्रीश्योर">AgriSure</span>
+        </a>
+        
+        <div class="nav-menu">
+            <a href="index.html" class="nav-link"><span data-en="Home" data-hi="होम">Home</span></a>
+            <a href="schemes.html" class="nav-link"><span data-en="Gov-Schemes" data-hi="सरकारी योजनाएं">Gov-Schemes</span></a>
+            <a href="payment.html" class="nav-link"><span data-en="Payments" data-hi="भुगतान">Payments</span></a>
+            <a href="track.html" class="nav-link"><span data-en="Track Payments" data-hi="भुगतान ट्रैक करें">Track Payments</span></a>
+            <a href="complaint.html" class="nav-link"><span data-en="Complaints" data-hi="शिकायतें">Complaints</span></a>
+            <a href="register.html" class="nav-link" id="registerLink"><span data-en="Register" data-hi="पंजीकरण">Register</span></a>
+            <a href="profile.html" class="nav-link" id="profileLink" style="display:none;"><span data-en="Profile" data-hi="प्रोफाइल">Profile</span></a>
+        </div>
+        
+        <div class="nav-controls">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <span class="theme-icon">🌙</span>
+            </button>
+            <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">
+                <span class="lang-text">हिं</span>
+            </button>
+            <div class="user-profile" id="userProfile" style="display:none;">
+                <button class="profile-btn" onclick="toggleProfileMenu()" aria-label="User profile">
+                    <span class="profile-icon">👤</span>
+                </button>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="profile-info">
+                        <span class="user-name" id="userName"></span>
+                        <span class="user-phone" id="userPhone"></span>
+                    </div>
+                    <div class="profile-actions">
+                        <button onclick="viewProfile()" data-en="My Profile" data-hi="मेरी प्रोफ़ाइल">👤 My Profile</button>
+                        <button onclick="signOut()" data-en="Sign Out" data-hi="साइन आउट">🚪 Sign Out</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="page-header">
+            <h2 data-en="Latest Government Schemes for Farmers" data-hi="किसानों के लिए नवीनतम सरकारी योजनाएं">Latest Government Schemes for Farmers</h2>
+            <p data-en="Explore and apply for government welfare schemes" data-hi="सरकारी कल्याण योजनाओं का अन्वेषण करें और आवेदन करें">Explore and apply for government welfare schemes</p>
+        </div>
+        
+        <div class="schemes-grid">
+            <div class="scheme-card">
+                <div class="scheme-header">
+                    <h3 data-en="PM-KISAN Scheme" data-hi="पीएम-किसान योजना">PM-KISAN Scheme</h3>
+                    <span class="scheme-status active" data-en="Active" data-hi="सक्रिय">Active</span>
+                </div>
+                <div class="scheme-content">
+                    <p><strong data-en="Benefit:" data-hi="लाभ:">Benefit:</strong> <span data-en="₹6,000 per year in 3 installments" data-hi="3 किस्तों में प्रति वर्ष ₹6,000">₹6,000 per year in 3 installments</span></p>
+                    <p><strong data-en="Eligibility:" data-hi="पात्रता:">Eligibility:</strong> <span data-en="Small and marginal farmers" data-hi="छोटे और सीमांत किसान">Small and marginal farmers</span></p>
+                </div>
+                <button class="btn-scheme" onclick="window.open('https://pmkisan.gov.in/', '_blank')" data-en="Apply Now" data-hi="अभी आवेदन करें">Apply Now</button>
+            </div>
+
+            <div class="scheme-card">
+                <div class="scheme-header">
+                    <h3 data-en="Pradhan Mantri Fasal Bima Yojana" data-hi="प्रधानमंत्री फसल बीमा योजना">Pradhan Mantri Fasal Bima Yojana</h3>
+                    <span class="scheme-status active" data-en="Active" data-hi="सक्रिय">Active</span>
+                </div>
+                <div class="scheme-content">
+                    <p><strong data-en="Benefit:" data-hi="लाभ:">Benefit:</strong> <span data-en="Crop insurance coverage" data-hi="फसल बीमा कवरेज">Crop insurance coverage</span></p>
+                    <p><strong data-en="Eligibility:" data-hi="पात्रता:">Eligibility:</strong> <span data-en="All farmers" data-hi="सभी किसान">All farmers</span></p>
+                </div>
+                <button class="btn-scheme" onclick="window.open('https://pmfby.gov.in/', '_blank')" data-en="Apply Now" data-hi="अभी आवेदन करें">Apply Now</button>
+            </div>
+
+            <div class="scheme-card">
+                <div class="scheme-header">
+                    <h3 data-en="Kisan Credit Card" data-hi="किसान क्रेडिट कार्ड">Kisan Credit Card</h3>
+                    <span class="scheme-status active" data-en="Active" data-hi="सक्रिय">Active</span>
+                </div>
+                <div class="scheme-content">
+                    <p><strong data-en="Benefit:" data-hi="लाभ:">Benefit:</strong> <span data-en="Easy credit access at 4% interest" data-hi="4% ब्याज पर आसान क्रेडिट पहुंच">Easy credit access at 4% interest</span></p>
+                    <p><strong data-en="Eligibility:" data-hi="पात्रता:">Eligibility:</strong> <span data-en="Farmers with land records" data-hi="भूमि रिकॉर्ड वाले किसान">Farmers with land records</span></p>
+                </div>
+                <button class="btn-scheme" onclick="window.open('https://www.india.gov.in/spotlight/kisan-credit-card-scheme', '_blank')" data-en="Apply Now" data-hi="अभी आवेदन करें">Apply Now</button>
+            </div>
+
+            <div class="scheme-card">
+                <div class="scheme-header">
+                    <h3 data-en="Soil Health Card Scheme" data-hi="मृदा स्वास्थ्य कार्ड योजना">Soil Health Card Scheme</h3>
+                    <span class="scheme-status active" data-en="Active" data-hi="सक्रिय">Active</span>
+                </div>
+                <div class="scheme-content">
+                    <p><strong data-en="Benefit:" data-hi="लाभ:">Benefit:</strong> <span data-en="Free soil testing and recommendations" data-hi="मुफ्त मिट्टी परीक्षण और सिफारिशें">Free soil testing and recommendations</span></p>
+                    <p><strong data-en="Eligibility:" data-hi="पात्रता:">Eligibility:</strong> <span data-en="All farmers" data-hi="सभी किसान">All farmers</span></p>
+                </div>
+                <button class="btn-scheme" onclick="window.open('https://soilhealth.dac.gov.in/', '_blank')" data-en="Apply Now" data-hi="अभी आवेदन करें">Apply Now</button>
+            </div>
+
+            <div class="scheme-card">
+                <div class="scheme-header">
+                    <h3 data-en="Organic Farming Scheme" data-hi="जैविक खेती योजना">Organic Farming Scheme</h3>
+                    <span class="scheme-status new" data-en="New" data-hi="नया">New</span>
+                </div>
+                <div class="scheme-content">
+                    <p><strong data-en="Benefit:" data-hi="लाभ:">Benefit:</strong> <span data-en="Subsidy for organic farming" data-hi="जैविक खेती के लिए सब्सिडी">Subsidy for organic farming</span></p>
+                    <p><strong data-en="Eligibility:" data-hi="पात्रता:">Eligibility:</strong> <span data-en="Certified organic farmers" data-hi="प्रमाणित जैविक किसान">Certified organic farmers</span></p>
+                </div>
+                <button class="btn-scheme" onclick="window.open('https://pgsindia-ncof.gov.in/', '_blank')" data-en="Apply Now" data-hi="अभी आवेदन करें">Apply Now</button>
+            </div>
+
+            <div class="scheme-card">
+                <div class="scheme-header">
+                    <h3 data-en="Drip Irrigation Subsidy" data-hi="ड्रिप सिंचाई सब्सिडी">Drip Irrigation Subsidy</h3>
+                    <span class="scheme-status new" data-en="New" data-hi="नया">New</span>
+                </div>
+                <div class="scheme-content">
+                    <p><strong data-en="Benefit:" data-hi="लाभ:">Benefit:</strong> <span data-en="50% subsidy on drip irrigation" data-hi="ड्रिप सिंचाई पर 50% सब्सिडी">50% subsidy on drip irrigation</span></p>
+                    <p><strong data-en="Eligibility:" data-hi="पात्रता:">Eligibility:</strong> <span data-en="Small and marginal farmers" data-hi="छोटे और सीमांत किसान">Small and marginal farmers</span></p>
+                </div>
+                <button class="btn-scheme" onclick="window.open('https://pmksy.gov.in/', '_blank')" data-en="Apply Now" data-hi="अभी आवेदन करें">Apply Now</button>
+            </div>
+        </div>
+
+        <div class="updates-section">
+            <h3 data-en="Recent Updates" data-hi="हाल की अपडेट">Recent Updates</h3>
+            <ul class="updates-list">
+                <li><span class="date">Sept 1, 2025:</span> <span data-en="New organic farming subsidy announced" data-hi="नई जैविक खेती सब्सिडी की घोषणा">New organic farming subsidy announced</span></li>
+                <li><span class="date">Aug 28, 2025:</span> <span data-en="PM-KISAN 15th installment released" data-hi="पीएम-किसान 15वीं किस्त जारी">PM-KISAN 15th installment released</span></li>
+                <li><span class="date">Aug 25, 2025:</span> <span data-en="Drip irrigation scheme extended to all states" data-hi="ड्रिप सिंचाई योजना सभी राज्यों में विस्तारित">Drip irrigation scheme extended to all states</span></li>
+            </ul>
+        </div>
+    </main>
+
+    <!-- Chatbot Widget -->
+    <div class="chatbot-widget">
+        <button class="chatbot-toggle" onclick="toggleChatbot()" aria-label="Open chatbot">
+            🤖
+        </button>
+        <div class="chatbot-container" id="chatbotContainer">
+            <div class="chatbot-header">
+                <span>🌾</span>
+                <span data-en="Schemes Assistant" data-hi="योजना सहायक">Schemes Assistant</span>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="message bot" data-en="Hello! I can help you understand government schemes and eligibility criteria!" data-hi="नमस्ते! मैं आपको सरकारी योजनाओं और पात्रता मानदंडों को समझने में मदद कर सकता हूं!">
+                    Hello! I can help you understand government schemes and eligibility criteria!
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbotInput" placeholder="Ask about schemes..." data-en="Ask about schemes..." data-hi="योजनाओं के बारे में पूछें...">
+                <button onclick="sendMessage()" data-en="Send" data-hi="भेजें">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentLang = 'en';
+        let currentTheme = 'light';
+
+        function toggleTheme() {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.body.setAttribute('data-theme', currentTheme);
+            document.querySelector('.theme-icon').textContent = currentTheme === 'light' ? '🌙' : '☀️';
+            localStorage.setItem('theme', currentTheme);
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'hi' : 'en';
+            document.querySelectorAll('[data-en][data-hi]').forEach(el => {
+                el.textContent = el.getAttribute(`data-${currentLang}`);
+            });
+            document.querySelector('.lang-text').textContent = currentLang === 'en' ? 'हिं' : 'EN';
+            localStorage.setItem('language', currentLang);
+        }
+
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+            document.querySelector('.hamburger').classList.toggle('active');
+        }
+
+        function toggleProfileMenu() {
+            document.getElementById('profileDropdown').classList.toggle('active');
+        }
+
+        function viewProfile() {
+            window.location.href = 'profile.html';
+        }
+
+        function signOut() {
+            const message = currentLang === 'en' 
+                ? 'Are you sure you want to sign out?'
+                : 'क्या आप वाकई साइन आउट करना चाहते हैं?';
+            if (confirm(message)) {
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userData');
+                window.location.href = 'index.html';
+            }
+        }
+
+        function checkUserLogin() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+            
+            if (isLoggedIn && userData.name) {
+                document.getElementById('userProfile').style.display = 'block';
+                document.getElementById('userName').textContent = userData.name;
+                document.getElementById('userPhone').textContent = userData.phone;
+            }
+        }
+
+        function toggleChatbot() {
+            const container = document.getElementById('chatbotContainer');
+            container.style.display = container.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatbotInput');
+            const messages = document.getElementById('chatbotMessages');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.textContent = message;
+            messages.appendChild(userMsg);
+            
+            input.value = '';
+            
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'message bot';
+                botMsg.textContent = getBotResponse(message);
+                messages.appendChild(botMsg);
+                messages.scrollTop = messages.scrollHeight;
+            }, 1000);
+            
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function getBotResponse(message) {
+            const msg = message.toLowerCase();
+            
+            if (msg.includes('pm-kisan') || msg.includes('kisan')) {
+                return currentLang === 'en' 
+                    ? 'PM-KISAN provides ₹6,000 per year to eligible farmers in 3 installments. Apply with your Aadhaar and land documents.'
+                    : 'PM-KISAN पात्र किसानों को 3 किस्तों में प्रति वर्ष ₹6,000 प्रदान करता है। अपने आधार और भूमि दस्तावेजों के साथ आवेदन करें।';
+            }
+            
+            if (msg.includes('insurance') || msg.includes('crop')) {
+                return currentLang === 'en' 
+                    ? 'Crop insurance protects against natural disasters. Premium is subsidized by government. Apply during sowing season.'
+                    : 'फसल बीमा प्राकृतिक आपदाओं से सुरक्षा प्रदान करता है। प्रीमियम सरकार द्वारा सब्सिडी दी जाती है। बुवाई के मौसम में आवेदन करें।';
+            }
+            
+            if (msg.includes('subsidy') || msg.includes('fertilizer')) {
+                return currentLang === 'en' 
+                    ? 'Fertilizer subsidies reduce input costs. Available for registered farmers through authorized dealers.'
+                    : 'उर्वरक सब्सिडी इनपुट लागत कम करती है। पंजीकृत किसानों के लिए अधिकृत डीलरों के माध्यम से उपलब्ध।';
+            }
+            
+            if (msg.includes('eligibility') || msg.includes('apply')) {
+                return currentLang === 'en' 
+                    ? 'Most schemes require: Valid Aadhaar, Land documents, Bank account, and farmer registration. Check specific scheme requirements.'
+                    : 'अधिकांश योजनाओं के लिए आवश्यक: वैध आधार, भूमि दस्तावेज, बैंक खाता, और किसान पंजीकरण। विशिष्ट योजना आवश्यकताएं देखें।';
+            }
+            
+            return currentLang === 'en' 
+                ? 'I can help with PM-KISAN, crop insurance, subsidies, and eligibility criteria. What scheme interests you?'
+                : 'मैं PM-KISAN, फसल बीमा, सब्सिडी और पात्रता मानदंडों में मदद कर सकता हूं। आपको कौन सी योजना में रुचि है?';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const savedLang = localStorage.getItem('language') || 'en';
+            
+            if (savedTheme === 'dark') {
+                currentTheme = 'dark';
+                document.body.setAttribute('data-theme', 'dark');
+                document.querySelector('.theme-icon').textContent = '☀️';
+            }
+            
+            if (savedLang === 'hi') {
+                currentLang = 'hi';
+                document.querySelectorAll('[data-en][data-hi]').forEach(el => {
+                    el.textContent = el.getAttribute('data-hi');
+                });
+                document.querySelector('.lang-text').textContent = 'EN';
+            }
+            
+            checkUserLogin();
+            
+            document.getElementById('chatbotInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

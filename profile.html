@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - AgriSure</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <img src="logo.jpg" alt="AgriSure Logo" class="logo-img">
+            <span data-en="AgriSure" data-hi="एग्रीश्योर">AgriSure</span>
+        </a>
+        
+        <div class="nav-menu">
+            <a href="index.html" class="nav-link"><span data-en="Home" data-hi="होम">Home</span></a>
+            <a href="schemes.html" class="nav-link"><span data-en="Gov-Schemes" data-hi="सरकारी योजनाएं">Gov-Schemes</span></a>
+            <a href="payment.html" class="nav-link"><span data-en="Payments" data-hi="भुगतान">Payments</span></a>
+            <a href="track.html" class="nav-link"><span data-en="Track Payments" data-hi="भुगतान ट्रैक करें">Track Payments</span></a>
+            <a href="complaint.html" class="nav-link"><span data-en="Complaints" data-hi="शिकायतें">Complaints</span></a>
+            <a href="register.html" class="nav-link" id="registerLink"><span data-en="Register" data-hi="पंजीकरण">Register</span></a>
+            <a href="profile.html" class="nav-link" id="profileLink" style="display:none;"><span data-en="Profile" data-hi="प्रोफाइल">Profile</span></a>
+        </div>
+        
+        <div class="nav-controls">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <span class="theme-icon">🌙</span>
+            </button>
+            <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">
+                <span class="lang-text">हिं</span>
+            </button>
+            <div class="user-profile" id="userProfile">
+                <button class="profile-btn" onclick="toggleProfileMenu()" aria-label="User profile">
+                    <span class="profile-icon">👤</span>
+                </button>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="profile-info">
+                        <span class="user-name" id="userName"></span>
+                        <span class="user-phone" id="userPhone"></span>
+                    </div>
+                    <div class="profile-actions">
+                        <button onclick="viewProfile()" data-en="My Profile" data-hi="मेरी प्रोफ़ाइल">👤 My Profile</button>
+                        <button onclick="signOut()" data-en="Sign Out" data-hi="साइन आउट">🚪 Sign Out</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="profile-container">
+            <div class="profile-header">
+                <div class="profile-avatar">👤</div>
+                <h2 data-en="My Profile" data-hi="मेरी प्रोफ़ाइल">My Profile</h2>
+                <p data-en="Your farmer registration details" data-hi="आपके किसान पंजीकरण विवरण">Your farmer registration details</p>
+            </div>
+            
+            <div class="profile-details">
+                <div class="detail-section">
+                    <h3 data-en="Personal Information" data-hi="व्यक्तिगत जानकारी">Personal Information</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <span class="detail-label" data-en="Full Name" data-hi="पूरा नाम">Full Name</span>
+                            <span class="detail-value" id="profileName">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label" data-en="Mobile Number" data-hi="मोबाइल नंबर">Mobile Number</span>
+                            <span class="detail-value" id="profilePhone">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label" data-en="Email Address" data-hi="ईमेल पता">Email Address</span>
+                            <span class="detail-value" id="profileEmail">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label" data-en="Registration Date" data-hi="पंजीकरण तिथि">Registration Date</span>
+                            <span class="detail-value" id="profileDate">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h3 data-en="Account Status" data-hi="खाता स्थिति">Account Status</h3>
+                    <div class="status-grid">
+                        <div class="status-item">
+                            <span class="status-icon">✅</span>
+                            <span data-en="Verified Account" data-hi="सत्यापित खाता">Verified Account</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-icon">📱</span>
+                            <span data-en="OTP Verified" data-hi="OTP सत्यापित">OTP Verified</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-icon">🔒</span>
+                            <span data-en="Secure Profile" data-hi="सुरक्षित प्रोफ़ाइल">Secure Profile</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-actions-section">
+                    <button class="btn-primary" onclick="window.location.href='index.html'" data-en="Back to Home" data-hi="होम पर वापस">🏠 Back to Home</button>
+                    <button class="btn-secondary" onclick="signOut()" data-en="Sign Out" data-hi="साइन आउट">🚪 Sign Out</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let currentLang = 'en';
+        let currentTheme = 'light';
+
+        function toggleTheme() {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.body.setAttribute('data-theme', currentTheme);
+            document.querySelector('.theme-icon').textContent = currentTheme === 'light' ? '🌙' : '☀️';
+            localStorage.setItem('theme', currentTheme);
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'hi' : 'en';
+            document.querySelectorAll('[data-en][data-hi]').forEach(el => {
+                el.textContent = el.getAttribute(`data-${currentLang}`);
+            });
+            document.querySelector('.lang-text').textContent = currentLang === 'en' ? 'हिं' : 'EN';
+            localStorage.setItem('language', currentLang);
+        }
+
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+            document.querySelector('.hamburger').classList.toggle('active');
+        }
+
+        function toggleProfileMenu() {
+            document.getElementById('profileDropdown').classList.toggle('active');
+        }
+
+        function viewProfile() {
+            // Already on profile page
+            document.getElementById('profileDropdown').classList.remove('active');
+        }
+
+        function signOut() {
+            const message = currentLang === 'en' 
+                ? 'Are you sure you want to sign out?'
+                : 'क्या आप वाकई साइन आउट करना चाहते हैं?';
+            if (confirm(message)) {
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userData');
+                window.location.href = 'index.html';
+            }
+        }
+
+        function loadProfileData() {
+            const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+            
+            if (!userData.name) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            document.getElementById('profileName').textContent = userData.name || '-';
+            document.getElementById('profilePhone').textContent = userData.phone || '-';
+            document.getElementById('profileEmail').textContent = userData.email || 'Not provided';
+            document.getElementById('profileDate').textContent = userData.registeredAt ? new Date(userData.registeredAt).toLocaleDateString() : '-';
+            
+            document.getElementById('userName').textContent = userData.name;
+            document.getElementById('userPhone').textContent = userData.phone;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const savedLang = localStorage.getItem('language') || 'en';
+            
+            if (savedTheme === 'dark') {
+                currentTheme = 'dark';
+                document.body.setAttribute('data-theme', 'dark');
+                document.querySelector('.theme-icon').textContent = '☀️';
+            }
+            
+            if (savedLang === 'hi') {
+                currentLang = 'hi';
+                document.querySelectorAll('[data-en][data-hi]').forEach(el => {
+                    el.textContent = el.getAttribute('data-hi');
+                });
+                document.querySelector('.lang-text').textContent = 'EN';
+            }
+            
+            loadProfileData();
+        });
+    </script>
+</body>
+</html>

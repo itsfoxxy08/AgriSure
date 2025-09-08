@@ -1,0 +1,284 @@
+<!--
+AgriSure - Hackathon Project
+Created by: [Team Name]
+Team Members:
+- [Member 1 Name] - Frontend Development & UI/UX
+- [Member 2 Name] - JavaScript & Chatbot
+- [Member 3 Name] - CSS & Responsive Design  
+- [Member 4 Name] - Content & Localization
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriSure - Secure Transactions</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <img src="logo.jpg" alt="AgriSure Logo" class="logo-img">
+            <span data-en="AgriSure" data-hi="एग्रीश्योर">AgriSure</span>
+        </a>
+        
+        <div class="nav-menu">
+            <a href="index.html" class="nav-link"><span data-en="Home" data-hi="होम">Home</span></a>
+            <a href="schemes.html" class="nav-link"><span data-en="Gov-Schemes" data-hi="सरकारी योजनाएं">Gov-Schemes</span></a>
+            <a href="payment.html" class="nav-link"><span data-en="Payments" data-hi="भुगतान">Payments</span></a>
+            <a href="track.html" class="nav-link"><span data-en="Track Payments" data-hi="भुगतान ट्रैक करें">Track Payments</span></a>
+            <a href="complaint.html" class="nav-link"><span data-en="Complaints" data-hi="शिकायतें">Complaints</span></a>
+            <a href="register.html" class="nav-link" id="registerLink"><span data-en="Register" data-hi="पंजीकरण">Register</span></a>
+            <a href="profile.html" class="nav-link" id="profileLink" style="display:none;"><span data-en="Profile" data-hi="प्रोफाइल">Profile</span></a>
+        </div>
+        
+        <div class="nav-controls">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <span class="theme-icon">🌙</span>
+            </button>
+            <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">
+                <span class="lang-text">हिं</span>
+            </button>
+            <div class="user-profile" id="userProfile" style="display:none;">
+                <button class="profile-btn" onclick="toggleProfileMenu()" aria-label="User profile">
+                    <span class="profile-icon">👤</span>
+                </button>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="profile-info">
+                        <span class="user-name" id="userName"></span>
+                        <span class="user-phone" id="userPhone"></span>
+                    </div>
+                    <div class="profile-actions">
+                        <button onclick="viewProfile()" data-en="My Profile" data-hi="मेरी प्रोफ़ाइल">👤 My Profile</button>
+                        <button onclick="signOut()" data-en="Sign Out" data-hi="साइन आउट">🚪 Sign Out</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <h1 data-en="Secure & Transparent Farming Transactions" data-hi="सुरक्षित और पारदर्शी कृषि लेनदेन">Secure & Transparent Farming Transactions</h1>
+                <p data-en="Connect with local vendors, access government schemes, and make secure payments" data-hi="स्थानीय विक्रेताओं से जुड़ें, सरकारी योजनाओं का लाभ उठाएं, और सुरक्षित भुगतान करें">Connect with local vendors, access government schemes, and make secure payments</p>
+                <a href="register.html" class="btn-primary" data-en="Get Started" data-hi="शुरू करें">Get Started</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=500&h=400&fit=crop&crop=center" alt="Farmer in field" class="farmer-img">
+            </div>
+        </section>
+
+        <section class="features">
+            <a href="payment.html" class="feature-card">
+                <h3>🔒 <span data-en="Secure Transactions" data-hi="सुरक्षित लेनदेन">Secure Transactions</span></h3>
+                <p data-en="End-to-end encrypted payments with transaction tracking" data-hi="लेनदेन ट्रैकिंग के साथ एंड-टू-एंड एन्क्रिप्टेड भुगतान">End-to-end encrypted payments with transaction tracking</p>
+            </a>
+            <a href="schemes.html" class="feature-card">
+                <h3>🏛️ <span data-en="Government Schemes" data-hi="सरकारी योजनाएं">Government Schemes</span></h3>
+                <p data-en="Stay updated with latest farmer welfare schemes" data-hi="नवीनतम किसान कल्याण योजनाओं से अपडेट रहें">Stay updated with latest farmer welfare schemes</p>
+            </a>
+            <a href="track.html" class="feature-card">
+                <h3>🤝 <span data-en="Local Vendors" data-hi="स्थानीय विक्रेता">Local Vendors</span></h3>
+                <p data-en="Connect and transact with verified local vendors" data-hi="सत्यापित स्थानीय विक्रेताओं से जुड़ें और लेनदेन करें">Connect and transact with verified local vendors</p>
+            </a>
+            <a href="complaint.html" class="feature-card">
+                <h3>📝 <span data-en="File Complaint" data-hi="शिकायत दर्ज करें">File Complaint</span></h3>
+                <p data-en="Submit your problems and issues to government authorities" data-hi="सरकारी अधिकारियों को अपनी समस्याएं और मुद्दे प्रस्तुत करें">Submit your problems and issues to government authorities</p>
+            </a>
+        </section>
+    </main>
+
+    <!-- Chatbot Widget -->
+    <div class="chatbot-widget">
+        <button class="chatbot-toggle" onclick="toggleChatbot()" aria-label="Open chatbot">
+            🤖
+        </button>
+        <div class="chatbot-container" id="chatbotContainer">
+            <div class="chatbot-header">
+                <span>🌾</span>
+                <span data-en="Farm Assistant" data-hi="कृषि सहायक">Farm Assistant</span>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="message bot" data-en="Hello! I'm your farming assistant. Ask me about crops, schemes, or farming tips!" data-hi="नमस्ते! मैं आपका कृषि सहायक हूं। फसलों, योजनाओं या कृषि सुझावों के बारे में पूछें!">
+                    Hello! I'm your farming assistant. Ask me about crops, schemes, or farming tips!
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbotInput" placeholder="Type your question..." data-en="Type your question..." data-hi="अपना प्रश्न टाइप करें...">
+                <button onclick="sendMessage()" data-en="Send" data-hi="भेजें">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentLang = 'en';
+        let currentTheme = 'light';
+
+        function toggleTheme() {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.body.setAttribute('data-theme', currentTheme);
+            document.querySelector('.theme-icon').textContent = currentTheme === 'light' ? '🌙' : '☀️';
+            localStorage.setItem('theme', currentTheme);
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'hi' : 'en';
+            document.querySelectorAll('[data-en][data-hi]').forEach(el => {
+                el.textContent = el.getAttribute(`data-${currentLang}`);
+            });
+            document.querySelector('.lang-text').textContent = currentLang === 'en' ? 'हिं' : 'EN';
+            localStorage.setItem('language', currentLang);
+        }
+
+        // Check registration status and toggle register/profile buttons
+        function checkRegistrationStatus() {
+            const isRegistered = localStorage.getItem('userRegistered') === 'true';
+            const registerLink = document.getElementById('registerLink');
+            const profileLink = document.getElementById('profileLink');
+            
+            if (isRegistered) {
+                registerLink.style.display = 'none';
+                profileLink.style.display = 'block';
+            } else {
+                registerLink.style.display = 'block';
+                profileLink.style.display = 'none';
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', checkRegistrationStatus);
+
+        function toggleProfileMenu() {
+            document.getElementById('profileDropdown').classList.toggle('active');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const userProfile = document.getElementById('userProfile');
+            const profileDropdown = document.getElementById('profileDropdown');
+            
+            if (userProfile && !userProfile.contains(event.target)) {
+                profileDropdown.classList.remove('active');
+            }
+        });
+
+        function viewProfile() {
+            window.location.href = 'profile.html';
+        }
+
+        function signOut() {
+            const message = currentLang === 'en' 
+                ? 'Are you sure you want to sign out?'
+                : 'क्या आप वाकई साइन आउट करना चाहते हैं?';
+            if (confirm(message)) {
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userData');
+                location.reload();
+            }
+        }
+
+        function toggleChatbot() {
+            const container = document.getElementById('chatbotContainer');
+            container.style.display = container.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatbotInput');
+            const messages = document.getElementById('chatbotMessages');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.textContent = message;
+            messages.appendChild(userMsg);
+            
+            // Clear input
+            input.value = '';
+            
+            // Generate bot response
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'message bot';
+                botMsg.textContent = getBotResponse(message);
+                messages.appendChild(botMsg);
+                messages.scrollTop = messages.scrollHeight;
+            }, 1000);
+            
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function getBotResponse(message) {
+            const msg = message.toLowerCase();
+            
+            if (msg.includes('crop') || msg.includes('farming') || msg.includes('agriculture')) {
+                return currentLang === 'en' 
+                    ? 'For crop recommendations, consider soil type, climate, and water availability. Popular crops include wheat, rice, and vegetables based on your region.'
+                    : 'फसल सिफारिशों के लिए, मिट्टी का प्रकार, जलवायु और पानी की उपलब्धता पर विचार करें। आपके क्षेत्र के आधार पर गेहूं, चावल और सब्जियां लोकप्रिय फसलें हैं।';
+            }
+            
+            if (msg.includes('scheme') || msg.includes('government') || msg.includes('subsidy')) {
+                return currentLang === 'en' 
+                    ? 'Check our Government Schemes section for PM-KISAN, crop insurance, and subsidy programs. Visit the schemes page for detailed information.'
+                    : 'PM-KISAN, फसल बीमा और सब्सिडी कार्यक्रमों के लिए हमारे सरकारी योजनाएं अनुभाग देखें। विस्तृत जानकारी के लिए योजनाओं का पेज देखें।';
+            }
+            
+            if (msg.includes('payment') || msg.includes('transaction') || msg.includes('money')) {
+                return currentLang === 'en' 
+                    ? 'Use our secure payment gateway to make transactions with verified vendors. All payments are protected with SSL encryption.'
+                    : 'सत्यापित विक्रेताओं के साथ लेनदेन करने के लिए हमारे सुरक्षित भुगतान गेटवे का उपयोग करें। सभी भुगतान SSL एन्क्रिप्शन से सुरक्षित हैं।';
+            }
+            
+            if (msg.includes('register') || msg.includes('signup') || msg.includes('account')) {
+                return currentLang === 'en' 
+                    ? 'Register with your Aadhaar details to access all farming services. OTP verification ensures secure registration.'
+                    : 'सभी कृषि सेवाओं तक पहुंचने के लिए अपने आधार विवरण के साथ पंजीकरण करें। OTP सत्यापन सुरक्षित पंजीकरण सुनिश्चित करता है।';
+            }
+            
+            if (msg.includes('weather') || msg.includes('climate')) {
+                return currentLang === 'en' 
+                    ? 'Monitor weather conditions regularly for better crop planning. Consider seasonal patterns and rainfall for optimal farming.'
+                    : 'बेहतर फसल योजना के लिए मौसम की स्थिति की नियमित निगरानी करें। इष्टतम कृषि के लिए मौसमी पैटर्न और वर्षा पर विचार करें।';
+            }
+            
+            return currentLang === 'en' 
+                ? 'I can help with farming queries, government schemes, payments, and registration. What specific information do you need?'
+                : 'मैं कृषि प्रश्नों, सरकारी योजनाओं, भुगतान और पंजीकरण में मदद कर सकता हूं। आपको कौन सी विशिष्ट जानकारी चाहिए?';
+        }
+
+        // Enter key support
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('chatbotInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        });
+
+        function checkUserLogin() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+            
+            if (isLoggedIn && userData.name) {
+                document.getElementById('userProfile').style.display = 'block';
+                document.getElementById('userName').textContent = userData.name;
+                document.getElementById('userPhone').textContent = userData.phone;
+            }
+        }
+
+        // Load saved preferences and check login
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const savedLang = localStorage.getItem('language') || 'en';
+            
+            if (savedTheme === 'dark') toggleTheme();
+            if (savedLang === 'hi') toggleLanguage();
+            
+            checkUserLogin();
+        });
+    </script>
+</body>
+</html>

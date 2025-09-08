@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Transaction - AgriSure</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <img src="logo.jpg" alt="AgriSure Logo" class="logo-img">
+            <span data-en="AgriSure" data-hi="एग्रीश्योर">AgriSure</span>
+        </a>
+        
+        <div class="nav-menu">
+            <a href="index.html" class="nav-link"><span data-en="Home" data-hi="होम">Home</span></a>
+            <a href="schemes.html" class="nav-link"><span data-en="Gov-Schemes" data-hi="सरकारी योजनाएं">Gov-Schemes</span></a>
+            <a href="payment.html" class="nav-link"><span data-en="Payments" data-hi="भुगतान">Payments</span></a>
+            <a href="track.html" class="nav-link"><span data-en="Track Payments" data-hi="भुगतान ट्रैक करें">Track Payments</span></a>
+            <a href="complaint.html" class="nav-link"><span data-en="Complaints" data-hi="शिकायतें">Complaints</span></a>
+            <a href="register.html" class="nav-link" id="registerLink"><span data-en="Register" data-hi="पंजीकरण">Register</span></a>
+            <a href="profile.html" class="nav-link" id="profileLink" style="display:none;"><span data-en="Profile" data-hi="प्रोफाइल">Profile</span></a>
+        </div>
+        
+        <div class="nav-controls">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <span class="theme-icon">🌙</span>
+            </button>
+            <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">
+                <span class="lang-text">हिं</span>
+            </button>
+            <div class="user-profile" id="userProfile" style="display:none;">
+                <button class="profile-btn" onclick="toggleProfileMenu()" aria-label="User profile">
+                    <span class="profile-icon">👤</span>
+                </button>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="profile-info">
+                        <span class="user-name" id="userName"></span>
+                        <span class="user-phone" id="userPhone"></span>
+                    </div>
+                    <div class="profile-actions">
+                        <button onclick="viewProfile()" data-en="My Profile" data-hi="मेरी प्रोफ़ाइल">👤 My Profile</button>
+                        <button onclick="signOut()" data-en="Sign Out" data-hi="साइन आउट">🚪 Sign Out</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="track-container">
+            <div class="page-header">
+                <h2 data-en="Transaction Tracker" data-hi="लेनदेन ट्रैकर">Transaction Tracker</h2>
+                <p data-en="Track your payment status and transaction history" data-hi="अपने भुगतान की स्थिति और लेनदेन इतिहास को ट्रैक करें">Track your payment status and transaction history</p>
+            </div>
+            
+            <form id="trackForm" class="track-form">
+                <div class="form-group">
+                    <label for="transactionId" data-en="Transaction ID *" data-hi="लेनदेन आईडी *">🔍 Transaction ID *</label>
+                    <input type="text" id="transactionId" name="transactionId" data-en="Enter your transaction ID (e.g., TXN1725372672441)" data-hi="अपना लेनदेन आईडी दर्ज करें (जैसे, TXN1725372672441)" placeholder="Enter your transaction ID (e.g., TXN1725372672441)" required>
+                    <span class="form-line"></span>
+                </div>
+                <button type="submit" class="btn-primary" data-en="Track Transaction" data-hi="लेनदेन ट्रैक करें">🔍 Track Transaction</button>
+            </form>
+
+            <div id="transactionResult" class="transaction-result" style="display:none;">
+                <div class="result-card">
+                    <h3 data-en="Transaction Details" data-hi="लेनदेन विवरण">Transaction Details</h3>
+                    <div class="detail-row">
+                        <span class="label" data-en="Transaction ID:" data-hi="लेनदेन आईडी:">Transaction ID:</span>
+                        <span class="value" id="resultTxnId"></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label" data-en="Status:" data-hi="स्थिति:">Status:</span>
+                        <span class="value status" id="resultStatus"></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label" data-en="Amount:" data-hi="राशि:">Amount:</span>
+                        <span class="value" id="resultAmount"></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label" data-en="Vendor:" data-hi="विक्रेता:">Vendor:</span>
+                        <span class="value" id="resultVendor"></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label" data-en="Date & Time:" data-hi="दिनांक और समय:">Date & Time:</span>
+                        <span class="value" id="resultDateTime"></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label" data-en="Payment Method:" data-hi="भुगतान विधि:">Payment Method:</span>
+                        <span class="value" id="resultPaymentMethod"></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label" data-en="Description:" data-hi="विवरण:">Description:</span>
+                        <span class="value" id="resultDescription"></span>
+                    </div>
+                </div>
+
+                <div class="timeline">
+                    <h4 data-en="Transaction Timeline" data-hi="लेनदेन समयरेखा">Transaction Timeline</h4>
+                    <div class="timeline-item completed">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h5 data-en="Payment Initiated" data-hi="भुगतान शुरू किया गया">Payment Initiated</h5>
+                            <p data-en="Transaction request received" data-hi="लेनदेन अनुरोध प्राप्त हुआ">Transaction request received</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item completed">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h5 data-en="Payment Processing" data-hi="भुगतान प्रसंस्करण">Payment Processing</h5>
+                            <p data-en="Verifying payment details" data-hi="भुगतान विवरण सत्यापित कर रहे हैं">Verifying payment details</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item completed">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h5 data-en="Payment Successful" data-hi="भुगतान सफल">Payment Successful</h5>
+                            <p data-en="Amount transferred to vendor" data-hi="राशि विक्रेता को स्थानांतरित">Amount transferred to vendor</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recent-transactions">
+                <h3 data-en="Recent Transactions" data-hi="हाल के लेनदेन">Recent Transactions</h3>
+                <div class="transaction-list">
+                    <div class="transaction-item">
+                        <div class="txn-info">
+                            <span class="txn-id">TXN1725372672441</span>
+                            <span class="txn-desc" data-en="Seeds purchase from Seeds & Co." data-hi="सीड्स एंड कंपनी से बीज खरीद">Seeds purchase from Seeds & Co.</span>
+                        </div>
+                        <div class="txn-details">
+                            <span class="txn-amount">₹2,500</span>
+                            <span class="txn-status success" data-en="Completed" data-hi="पूर्ण">Completed</span>
+                        </div>
+                    </div>
+                    <div class="transaction-item">
+                        <div class="txn-info">
+                            <span class="txn-id">TXN1725372672440</span>
+                            <span class="txn-desc" data-en="Fertilizer from Fertilizer Hub" data-hi="फर्टिलाइजर हब से उर्वरक">Fertilizer from Fertilizer Hub</span>
+                        </div>
+                        <div class="txn-details">
+                            <span class="txn-amount">₹1,800</span>
+                            <span class="txn-status success" data-en="Completed" data-hi="पूर्ण">Completed</span>
+                        </div>
+                    </div>
+                    <div class="transaction-item">
+                        <div class="txn-info">
+                            <span class="txn-id">TXN1725372672439</span>
+                            <span class="txn-desc" data-en="Tools from Agri Tools Ltd" data-hi="एग्री टूल्स लिमिटेड से उपकरण">Tools from Agri Tools Ltd</span>
+                        </div>
+                        <div class="txn-details">
+                            <span class="txn-amount">₹3,200</span>
+                            <span class="txn-status pending" data-en="Processing" data-hi="प्रसंस्करण">Processing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Chatbot Widget -->
+    <div class="chatbot-widget">
+        <button class="chatbot-toggle" onclick="toggleChatbot()" aria-label="Open chatbot">
+            🤖
+        </button>
+        <div class="chatbot-container" id="chatbotContainer">
+            <div class="chatbot-header">
+                <span>🌾</span>
+                <span data-en="Track Assistant" data-hi="ट्रैक सहायक">Track Assistant</span>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="message bot" data-en="Hi! I can help you track transactions and understand payment status!" data-hi="नमस्ते! मैं आपको लेनदेन ट्रैक करने और भुगतान स्थिति समझने में मदद कर सकता हूं!">
+                    Hi! I can help you track transactions and understand payment status!
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbotInput" placeholder="Ask about tracking..." data-en="Ask about tracking..." data-hi="ट्रैकिंग के बारे में पूछें...">
+                <button onclick="sendMessage()" data-en="Send" data-hi="भेजें">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentLang = 'en';
+        let currentTheme = 'light';
+
+        function toggleTheme() {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.body.setAttribute('data-theme', currentTheme);
+            document.querySelector('.theme-icon').textContent = currentTheme === 'light' ? '🌙' : '☀️';
+            localStorage.setItem('theme', currentTheme);
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'hi' : 'en';
+            document.querySelectorAll('[data-en][data-hi]').forEach(el => {
+                el.textContent = el.getAttribute(`data-${currentLang}`);
+            });
+            document.querySelector('.lang-text').textContent = currentLang === 'en' ? 'हिं' : 'EN';
+            localStorage.setItem('language', currentLang);
+        }
+
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+            document.querySelector('.hamburger').classList.toggle('active');
+        }
+
+        function toggleProfileMenu() {
+            document.getElementById('profileDropdown').classList.toggle('active');
+        }
+
+        function viewProfile() {
+            window.location.href = 'profile.html';
+        }
+
+        function signOut() {
+            const message = currentLang === 'en' 
+                ? 'Are you sure you want to sign out?'
+                : 'क्या आप वाकई साइन आउट करना चाहते हैं?';
+            if (confirm(message)) {
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userData');
+                window.location.href = 'index.html';
+            }
+        }
+
+        function checkUserLogin() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+            
+            if (isLoggedIn && userData.name) {
+                document.getElementById('userProfile').style.display = 'block';
+                document.getElementById('userName').textContent = userData.name;
+                document.getElementById('userPhone').textContent = userData.phone;
+            }
+        }
+
+        function toggleChatbot() {
+            const container = document.getElementById('chatbotContainer');
+            container.style.display = container.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatbotInput');
+            const messages = document.getElementById('chatbotMessages');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.textContent = message;
+            messages.appendChild(userMsg);
+            
+            input.value = '';
+            
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'message bot';
+                botMsg.textContent = getBotResponse(message);
+                messages.appendChild(botMsg);
+                messages.scrollTop = messages.scrollHeight;
+            }, 1000);
+            
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function getBotResponse(message) {
+            const msg = message.toLowerCase();
+            
+            if (msg.includes('track') || msg.includes('transaction') || msg.includes('id')) {
+                return currentLang === 'en' 
+                    ? 'Enter your transaction ID in the form above. You can find it in your payment confirmation or recent transactions.'
+                    : 'ऊपर के फॉर्म में अपना लेनदेन आईडी दर्ज करें। आप इसे अपनी भुगतान पुष्टि या हाल के लेनदेन में पा सकते हैं।';
+            }
+            
+            if (msg.includes('status') || msg.includes('payment')) {
+                return currentLang === 'en' 
+                    ? 'Transaction status shows: Success (completed), Pending (processing), or Failed (unsuccessful). Check recent transactions below.'
+                    : 'लेनदेन स्थिति दिखाती है: सफल (पूर्ण), लंबित (प्रसंस्करण), या असफल (असफल)। नीचे हाल के लेनदेन देखें।';
+            }
+            
+            if (msg.includes('recent') || msg.includes('history')) {
+                return currentLang === 'en' 
+                    ? 'Recent transactions are automatically saved and displayed below. Click on any transaction to see details.'
+                    : 'हाल के लेनदेन स्वचालित रूप से सहेजे जाते हैं और नीचे प्रदर्शित होते हैं। विवरण देखने के लिए किसी भी लेनदेन पर क्लिक करें।';
+            }
+            
+            return currentLang === 'en' 
+                ? 'I can help with transaction tracking, payment status, and transaction history. What do you need help with?'
+                : 'मैं लेनदेन ट्रैकिंग, भुगतान स्थिति और लेनदेन इतिहास में मदद कर सकता हूं। आपको किस चीज़ में मदद चाहिए?';
+        }
+
+        // Load recent transactions
+        function loadRecentTransactions() {
+            const transactions = JSON.parse(localStorage.getItem('transactions') || '[]');
+            const transactionList = document.querySelector('.transaction-list');
+            
+            if (transactions.length === 0) {
+                transactionList.innerHTML = '<p style="text-align: center; color: var(--on-surface-variant);">No recent transactions found</p>';
+                return;
+            }
+            
+            transactionList.innerHTML = transactions.map(txn => `
+                <div class="transaction-item">
+                    <div class="txn-info">
+                        <div class="txn-id">${txn.id}</div>
+                        <div class="txn-desc">${txn.description}</div>
+                    </div>
+                    <div class="txn-details">
+                        <div class="txn-amount">₹${txn.amount}</div>
+                        <div class="txn-status ${txn.status}">${txn.status.toUpperCase()}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const savedLang = localStorage.getItem('language') || 'en';
+            
+            if (savedTheme === 'dark') {
+                currentTheme = 'dark';
+                document.body.setAttribute('data-theme', 'dark');
+                document.querySelector('.theme-icon').textContent = '☀️';
+            }
+            
+            if (savedLang === 'hi') {
+                currentLang = 'hi';
+                document.querySelectorAll('[data-en][data-hi]').forEach(el => {
+                    el.textContent = el.getAttribute('data-hi');
+                });
+                document.querySelector('.lang-text').textContent = 'EN';
+            }
+            
+            checkUserLogin();
+            loadRecentTransactions();
+            
+            document.getElementById('chatbotInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        });
+
+        document.getElementById('trackForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const txnId = document.getElementById('transactionId').value;
+            const transactions = JSON.parse(localStorage.getItem('transactions') || '[]');
+            const transaction = transactions.find(txn => txn.id === txnId);
+            
+            if (transaction) {
+                const vendorNames = {
+                    'seeds-co': 'Seeds & Co.',
+                    'fertilizer-hub': 'Fertilizer Hub',
+                    'agri-tools': 'Agri Tools Ltd',
+                    'organic-farm': 'Organic Farm Supply'
+                };
+                
+                document.getElementById('resultTxnId').textContent = transaction.id;
+                document.getElementById('resultStatus').textContent = transaction.status.toUpperCase();
+                document.getElementById('resultStatus').className = 'value status success';
+                document.getElementById('resultAmount').textContent = '₹' + transaction.amount;
+                document.getElementById('resultVendor').textContent = vendorNames[transaction.vendor] || 'Unknown';
+                document.getElementById('resultDateTime').textContent = new Date(transaction.date).toLocaleString();
+                document.getElementById('resultPaymentMethod').textContent = transaction.paymentMethod.toUpperCase();
+                document.getElementById('resultDescription').textContent = transaction.description;
+            } else {
+                document.getElementById('resultTxnId').textContent = txnId;
+                document.getElementById('resultStatus').textContent = 'NOT FOUND';
+                document.getElementById('resultStatus').className = 'value status error';
+                document.getElementById('resultAmount').textContent = '-';
+                document.getElementById('resultVendor').textContent = '-';
+                document.getElementById('resultDateTime').textContent = '-';
+                document.getElementById('resultPaymentMethod').textContent = '-';
+                document.getElementById('resultDescription').textContent = 'Transaction not found';
+            }
+            
+            document.getElementById('transactionResult').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

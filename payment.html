@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Payments - AgriSure</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <img src="logo.jpg" alt="AgriSure Logo" class="logo-img">
+            <span data-en="AgriSure" data-hi="एग्रीश्योर">AgriSure</span>
+        </a>
+        
+        <div class="nav-menu">
+            <a href="index.html" class="nav-link"><span data-en="Home" data-hi="होम">Home</span></a>
+            <a href="schemes.html" class="nav-link"><span data-en="Gov-Schemes" data-hi="सरकारी योजनाएं">Gov-Schemes</span></a>
+            <a href="payment.html" class="nav-link"><span data-en="Payments" data-hi="भुगतान">Payments</span></a>
+            <a href="track.html" class="nav-link"><span data-en="Track Payments" data-hi="भुगतान ट्रैक करें">Track Payments</span></a>
+            <a href="complaint.html" class="nav-link"><span data-en="Complaints" data-hi="शिकायतें">Complaints</span></a>
+            <a href="register.html" class="nav-link" id="registerLink"><span data-en="Register" data-hi="पंजीकरण">Register</span></a>
+            <a href="profile.html" class="nav-link" id="profileLink" style="display:none;"><span data-en="Profile" data-hi="प्रोफाइल">Profile</span></a>
+        </div>
+        
+        <div class="nav-controls">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <span class="theme-icon">🌙</span>
+            </button>
+            <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">
+                <span class="lang-text">हिं</span>
+            </button>
+            <div class="user-profile" id="userProfile" style="display:none;">
+                <button class="profile-btn" onclick="toggleProfileMenu()" aria-label="User profile">
+                    <span class="profile-icon">👤</span>
+                </button>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="profile-info">
+                        <span class="user-name" id="userName"></span>
+                        <span class="user-phone" id="userPhone"></span>
+                    </div>
+                    <div class="profile-actions">
+                        <button onclick="viewProfile()" data-en="My Profile" data-hi="मेरी प्रोफ़ाइल">👤 My Profile</button>
+                        <button onclick="signOut()" data-en="Sign Out" data-hi="साइन आउट">🚪 Sign Out</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="payment-container">
+            <div class="page-header">
+                <h2 data-en="Secure Payment Gateway" data-hi="सुरक्षित भुगतान गेटवे">Secure Payment Gateway</h2>
+                <p data-en="Make secure transactions with verified vendors" data-hi="सत्यापित विक्रेताओं के साथ सुरक्षित लेनदेन करें">Make secure transactions with verified vendors</p>
+            </div>
+            
+            <div class="vendor-selection">
+                <h3 data-en="Select Vendor" data-hi="विक्रेता चुनें">Select Vendor</h3>
+                <select id="vendorSelect" class="form-select">
+                    <option value="" data-en="Choose a vendor..." data-hi="एक विक्रेता चुनें...">Choose a vendor...</option>
+                    <option value="seeds-co" data-en="Seeds & Co. - Verified ✓" data-hi="सीड्स एंड कंपनी - सत्यापित ✓">Seeds & Co. - Verified ✓</option>
+                    <option value="fertilizer-hub" data-en="Fertilizer Hub - Verified ✓" data-hi="फर्टिलाइजर हब - सत्यापित ✓">Fertilizer Hub - Verified ✓</option>
+                    <option value="agri-tools" data-en="Agri Tools Ltd - Verified ✓" data-hi="एग्री टूल्स लिमिटेड - सत्यापित ✓">Agri Tools Ltd - Verified ✓</option>
+                    <option value="organic-farm" data-en="Organic Farm Supply - Verified ✓" data-hi="ऑर्गेनिक फार्म सप्लाई - सत्यापित ✓">Organic Farm Supply - Verified ✓</option>
+                </select>
+            </div>
+
+            <form id="paymentForm" class="payment-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="amount" data-en="Amount (₹) *" data-hi="राशि (₹) *">💰 Amount (₹) *</label>
+                        <input type="number" id="amount" name="amount" min="1" step="0.01" placeholder="Enter amount to pay" required>
+                        <span class="form-line"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="paymentMethod" data-en="Payment Method *" data-hi="भुगतान विधि *">💳 Payment Method *</label>
+                        <select id="paymentMethod" name="paymentMethod" required>
+                            <option value="" data-en="Select payment method" data-hi="भुगतान विधि चुनें">Select payment method</option>
+                            <option value="upi">📱 UPI</option>
+                            <option value="netbanking" data-en="🏦 Net Banking" data-hi="🏦 नेट बैंकिंग">🏦 Net Banking</option>
+                            <option value="card" data-en="💳 Debit/Credit Card" data-hi="💳 डेबिट/क्रेडिट कार्ड">💳 Debit/Credit Card</option>
+                            <option value="wallet" data-en="📱 Digital Wallet" data-hi="📱 डिजिटल वॉलेट">📱 Digital Wallet</option>
+                        </select>
+                        <span class="form-line"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description" data-en="Transaction Description *" data-hi="लेनदेन विवरण *">📝 Transaction Description *</label>
+                    <input type="text" id="description" name="description" data-en="e.g., Seeds purchase, Fertilizer payment" data-hi="जैसे, बीज खरीद, उर्वरक भुगतान" placeholder="e.g., Seeds purchase, Fertilizer payment" required>
+                    <span class="form-line"></span>
+                </div>
+
+                <div id="upiDetails" class="payment-details" style="display:none;">
+                    <div class="form-group">
+                        <label for="upiId">📱 UPI ID *</label>
+                        <input type="text" id="upiId" name="upiId" placeholder="yourname@paytm">
+                        <span class="form-line"></span>
+                    </div>
+                </div>
+
+                <div id="cardDetails" class="payment-details" style="display:none;">
+                    <div class="form-group">
+                        <label for="cardNumber" data-en="Card Number *" data-hi="कार्ड नंबर *">💳 Card Number *</label>
+                        <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                        <span class="form-line"></span>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiryDate" data-en="Expiry Date *" data-hi="समाप्ति तिथि *">📅 Expiry Date *</label>
+                            <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" maxlength="5">
+                            <span class="form-line"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">🔒 CVV *</label>
+                            <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="3">
+                            <span class="form-line"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="security-info">
+                    <p>🔒 <span data-en="Your transaction is secured with 256-bit SSL encryption" data-hi="आपका लेनदेन 256-बिट SSL एन्क्रिप्शन से सुरक्षित है">Your transaction is secured with 256-bit SSL encryption</span></p>
+                    <p>📱 <span data-en="You will receive SMS and email confirmation" data-hi="आपको SMS और ईमेल पुष्टि प्राप्त होगी">You will receive SMS and email confirmation</span></p>
+                </div>
+
+                <button type="submit" class="btn-primary" data-en="Pay Securely" data-hi="सुरक्षित भुगतान करें">🔐 Pay Securely</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Chatbot Widget -->
+    <div class="chatbot-widget">
+        <button class="chatbot-toggle" onclick="toggleChatbot()" aria-label="Open chatbot">
+            🤖
+        </button>
+        <div class="chatbot-container" id="chatbotContainer">
+            <div class="chatbot-header">
+                <span>🌾</span>
+                <span data-en="Payment Assistant" data-hi="भुगतान सहायक">Payment Assistant</span>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="message bot" data-en="Hi! I can help with payment queries, security info, and transaction support!" data-hi="नमस्ते! मैं भुगतान प्रश्नों, सुरक्षा जानकारी और लेनदेन सहायता में मदद कर सकता हूं!">
+                    Hi! I can help with payment queries, security info, and transaction support!
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbotInput" placeholder="Ask about payments..." data-en="Ask about payments..." data-hi="भुगतान के बारे में पूछें...">
+                <button onclick="sendMessage()" data-en="Send" data-hi="भेजें">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentLang = 'en';
+        let currentTheme = 'light';
+
+        function toggleTheme() {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.body.setAttribute('data-theme', currentTheme);
+            document.querySelector('.theme-icon').textContent = currentTheme === 'light' ? '🌙' : '☀️';
+            localStorage.setItem('theme', currentTheme);
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'hi' : 'en';
+            document.querySelectorAll('[data-en][data-hi]').forEach(el => {
+                el.textContent = el.getAttribute(`data-${currentLang}`);
+            });
+            document.querySelector('.lang-text').textContent = currentLang === 'en' ? 'हिं' : 'EN';
+            localStorage.setItem('language', currentLang);
+        }
+
+        // Check registration status and toggle register/profile buttons
+        function checkRegistrationStatus() {
+            const isRegistered = localStorage.getItem('userRegistered') === 'true';
+            const registerLink = document.getElementById('registerLink');
+            const profileLink = document.getElementById('profileLink');
+            
+            if (isRegistered) {
+                registerLink.style.display = 'none';
+                profileLink.style.display = 'block';
+            } else {
+                registerLink.style.display = 'block';
+                profileLink.style.display = 'none';
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', checkRegistrationStatus);
+
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+            document.querySelector('.hamburger').classList.toggle('active');
+        }
+
+        function toggleProfileMenu() {
+            document.getElementById('profileDropdown').classList.toggle('active');
+        }
+
+        function viewProfile() {
+            window.location.href = 'profile.html';
+        }
+
+        function signOut() {
+            const message = currentLang === 'en' 
+                ? 'Are you sure you want to sign out?'
+                : 'क्या आप वाकई साइन आउट करना चाहते हैं?';
+            if (confirm(message)) {
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userData');
+                window.location.href = 'index.html';
+            }
+        }
+
+        function checkUserLogin() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+            
+            if (isLoggedIn && userData.name) {
+                document.getElementById('userProfile').style.display = 'block';
+                document.getElementById('userName').textContent = userData.name;
+                document.getElementById('userPhone').textContent = userData.phone;
+            }
+        }
+
+        function toggleChatbot() {
+            const container = document.getElementById('chatbotContainer');
+            container.style.display = container.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatbotInput');
+            const messages = document.getElementById('chatbotMessages');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.textContent = message;
+            messages.appendChild(userMsg);
+            
+            input.value = '';
+            
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'message bot';
+                botMsg.textContent = getBotResponse(message);
+                messages.appendChild(botMsg);
+                messages.scrollTop = messages.scrollHeight;
+            }, 1000);
+            
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function getBotResponse(message) {
+            const msg = message.toLowerCase();
+            
+            if (msg.includes('secure') || msg.includes('safe') || msg.includes('security')) {
+                return currentLang === 'en' 
+                    ? 'All payments are secured with 256-bit SSL encryption. We only work with verified vendors for your safety.'
+                    : 'सभी भुगतान 256-बिट SSL एन्क्रिप्शन से सुरक्षित हैं। हम आपकी सुरक्षा के लिए केवल सत्यापित विक्रेताओं के साथ काम करते हैं।';
+            }
+            
+            if (msg.includes('upi') || msg.includes('payment method')) {
+                return currentLang === 'en' 
+                    ? 'We support UPI, Net Banking, Debit/Credit Cards, and Digital Wallets. Choose your preferred method.'
+                    : 'हम UPI, नेट बैंकिंग, डेबिट/क्रेडिट कार्ड और डिजिटल वॉलेट का समर्थन करते हैं। अपनी पसंदीदा विधि चुनें।';
+            }
+            
+            if (msg.includes('vendor') || msg.includes('seller')) {
+                return currentLang === 'en' 
+                    ? 'All vendors are verified and trusted. Select from Seeds & Co., Fertilizer Hub, Agri Tools Ltd, or Organic Farm Supply.'
+                    : 'सभी विक्रेता सत्यापित और भरोसेमंद हैं। सीड्स एंड कंपनी, फर्टिलाइजर हब, एग्री टूल्स लिमिटेड, या ऑर्गेनिक फार्म सप्लाई में से चुनें।';
+            }
+            
+            if (msg.includes('transaction') || msg.includes('track')) {
+                return currentLang === 'en' 
+                    ? 'After payment, you\'ll get a transaction ID. Use it in the Track Transaction page to monitor your payment status.'
+                    : 'भुगतान के बाद, आपको एक लेनदेन आईडी मिलेगी। अपने भुगतान की स्थिति की निगरानी के लिए ट्रैक ट्रांजैक्शन पेज में इसका उपयोग करें।';
+            }
+            
+            return currentLang === 'en' 
+                ? 'I can help with payment security, methods, vendor info, and transaction tracking. What would you like to know?'
+                : 'मैं भुगतान सुरक्षा, विधियों, विक्रेता जानकारी और लेनदेन ट्रैकिंग में मदद कर सकता हूं। आप क्या जानना चाहेंगे?';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const savedLang = localStorage.getItem('language') || 'en';
+            
+            if (savedTheme === 'dark') toggleTheme();
+            if (savedLang === 'hi') toggleLanguage();
+            
+            checkUserLogin();
+            
+            document.getElementById('chatbotInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        });
+
+        document.getElementById('paymentMethod').addEventListener('change', function() {
+            const method = this.value;
+            document.querySelectorAll('.payment-details').forEach(el => el.style.display = 'none');
+            
+            if (method === 'upi') {
+                document.getElementById('upiDetails').style.display = 'block';
+            } else if (method === 'card') {
+                document.getElementById('cardDetails').style.display = 'block';
+            }
+        });
+
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const transactionId = 'TXN' + Date.now();
+            const formData = new FormData(this);
+            
+            // Create transaction object
+            const transaction = {
+                id: transactionId,
+                amount: formData.get('amount'),
+                description: formData.get('description'),
+                vendor: document.getElementById('vendorSelect').value,
+                paymentMethod: formData.get('paymentMethod'),
+                status: 'success',
+                date: new Date().toISOString(),
+                timestamp: Date.now()
+            };
+            
+            // Save to localStorage
+            let transactions = JSON.parse(localStorage.getItem('transactions') || '[]');
+            transactions.unshift(transaction);
+            transactions = transactions.slice(0, 10); // Keep only last 10
+            localStorage.setItem('transactions', JSON.stringify(transactions));
+            
+            const message = currentLang === 'en' 
+                ? `Payment initiated successfully!\nTransaction ID: ${transactionId}\nYou can track this transaction using the Transaction Tracker.`
+                : `भुगतान सफलतापूर्वक शुरू किया गया!\nलेनदेन आईडी: ${transactionId}\nआप ट्रांजैक्शन ट्रैकर का उपयोग करके इस लेनदेन को ट्रैक कर सकते हैं।`;
+            alert(message);
+        });
+
+        document.getElementById('cardNumber').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+            let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+            e.target.value = formattedValue;
+        });
+    </script>
+</body>
+</html>

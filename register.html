@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - AgriSure</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <img src="logo.jpg" alt="AgriSure Logo" class="logo-img">
+            <span data-en="AgriSure" data-hi="एग्रीश्योर">AgriSure</span>
+        </a>
+        
+        <div class="nav-menu">
+            <a href="index.html" class="nav-link"><span data-en="Home" data-hi="होम">Home</span></a>
+            <a href="schemes.html" class="nav-link"><span data-en="Gov-Schemes" data-hi="सरकारी योजनाएं">Gov-Schemes</span></a>
+            <a href="payment.html" class="nav-link"><span data-en="Payments" data-hi="भुगतान">Payments</span></a>
+            <a href="track.html" class="nav-link"><span data-en="Track Payments" data-hi="भुगतान ट्रैक करें">Track Payments</span></a>
+            <a href="complaint.html" class="nav-link"><span data-en="Complaints" data-hi="शिकायतें">Complaints</span></a>
+            <a href="register.html" class="nav-link" id="registerLink"><span data-en="Register" data-hi="पंजीकरण">Register</span></a>
+            <a href="profile.html" class="nav-link" id="profileLink" style="display:none;"><span data-en="Profile" data-hi="प्रोफाइल">Profile</span></a>
+        </div>
+        
+        <div class="nav-controls">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <span class="theme-icon">🌙</span>
+            </button>
+            <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">
+                <span class="lang-text">हिं</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="form-container">
+            <div class="form-header">
+                <h2 data-en="Farmer Registration" data-hi="किसान पंजीकरण">Farmer Registration</h2>
+                <p data-en="Join our secure farming platform" data-hi="हमारे सुरक्षित कृषि प्लेटफॉर्म में शामिल हों">Join our secure farming platform</p>
+            </div>
+            
+            <form id="registrationForm" class="registration-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name" data-en="Full Name *" data-hi="पूरा नाम *">👤 Full Name *</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                        <span class="form-line"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" data-en="Mobile Number *" data-hi="मोबाइल नंबर *">📱 Mobile Number *</label>
+                        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" maxlength="10" placeholder="10-digit mobile number" required>
+                        <span class="form-line"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="adhaar" data-en="Aadhaar Card Number *" data-hi="आधार कार्ड नंबर *">🆔 Aadhaar Card Number *</label>
+                        <input type="text" id="adhaar" name="adhaar" pattern="[0-9]{12}" maxlength="12" placeholder="Enter 12-digit Aadhaar number" required>
+                        <span class="form-line"></span>
+                        <small data-en="12-digit Aadhaar number" data-hi="12-अंकीय आधार संख्या">12-digit Aadhaar number</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="kisaan" data-en="Kisan ID Card Number *" data-hi="किसान आईडी कार्ड नंबर *">🌾 Kisan ID Card Number *</label>
+                        <input type="text" id="kisaan" name="kisaan" placeholder="Enter your Kisan ID" required>
+                        <span class="form-line"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="address" data-en="Complete Address *" data-hi="पूरा पता *">🏠 Complete Address *</label>
+                    <textarea id="address" name="address" rows="3" placeholder="Enter your complete address with landmarks" required></textarea>
+                    <span class="form-line"></span>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="district" data-en="District *" data-hi="जिला *">🏛️ District *</label>
+                        <input type="text" id="district" name="district" placeholder="Enter your district" required>
+                        <span class="form-line"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="state" data-en="State *" data-hi="राज्य *">🗺️ State *</label>
+                        <select id="state" name="state" required>
+                            <option value="">Select State</option>
+                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                            <option value="Assam">Assam</option>
+                            <option value="Bihar">Bihar</option>
+                            <option value="Chhattisgarh">Chhattisgarh</option>
+                            <option value="Goa">Goa</option>
+                            <option value="Gujarat">Gujarat</option>
+                            <option value="Haryana">Haryana</option>
+                            <option value="Himachal Pradesh">Himachal Pradesh</option>
+                            <option value="Jharkhand">Jharkhand</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="Madhya Pradesh">Madhya Pradesh</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Manipur">Manipur</option>
+                            <option value="Meghalaya">Meghalaya</option>
+                            <option value="Mizoram">Mizoram</option>
+                            <option value="Nagaland">Nagaland</option>
+                            <option value="Odisha">Odisha</option>
+                            <option value="Punjab">Punjab</option>
+                            <option value="Rajasthan">Rajasthan</option>
+                            <option value="Sikkim">Sikkim</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="Telangana">Telangana</option>
+                            <option value="Tripura">Tripura</option>
+                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                            <option value="Uttarakhand">Uttarakhand</option>
+                            <option value="West Bengal">West Bengal</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                            <option value="Ladakh">Ladakh</option>
+                            <option value="Puducherry">Puducherry</option>
+                            <option value="Chandigarh">Chandigarh</option>
+                            <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                            <option value="Lakshadweep">Lakshadweep</option>
+                            <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                        </select>
+                        <span class="form-line"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pincode" data-en="PIN Code *" data-hi="पिन कोड *">📮 PIN Code *</label>
+                        <input type="text" id="pincode" name="pincode" pattern="[0-9]{6}" maxlength="6" placeholder="6-digit PIN code" required>
+                        <span class="form-line"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" data-en="Email Address" data-hi="ईमेल पता">📧 Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address (optional)">
+                    <span class="form-line"></span>
+                </div>
+
+                <div class="form-group" id="otpSection" style="display:none;">
+                    <label for="otp" data-en="OTP Verification *" data-hi="OTP सत्यापन *">🔐 OTP Verification *</label>
+                    <input type="text" id="otp" name="otp" pattern="[0-9]{6}" maxlength="6" placeholder="Enter 6-digit OTP sent to your Aadhaar mobile">
+                    <span class="form-line"></span>
+                    <small data-en="OTP sent to your Aadhaar registered mobile number" data-hi="OTP आपके आधार पंजीकृत मोबाइल नंबर पर भेजा गया">OTP sent to your Aadhaar registered mobile number</small>
+                </div>
+
+                <button type="button" id="sendOtpBtn" class="btn-primary" data-en="Send OTP" data-hi="OTP भेजें" style="display:none;">📱 Send OTP</button>
+                <button type="submit" class="btn-primary" id="registerBtn" data-en="Register Now" data-hi="अभी पंजीकरण करें">Register Now</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Chatbot Widget -->
+    <div class="chatbot-widget">
+        <button class="chatbot-toggle" onclick="toggleChatbot()" aria-label="Open chatbot">
+            🤖
+        </button>
+        <div class="chatbot-container" id="chatbotContainer">
+            <div class="chatbot-header">
+                <span>🌾</span>
+                <span data-en="Farm Assistant" data-hi="कृषि सहायक">Farm Assistant</span>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="message bot" data-en="Hello! I'm here to help with registration. Ask me about required documents or the process!" data-hi="नमस्ते! मैं पंजीकरण में मदद के लिए यहां हूं। आवश्यक दस्तावेजों या प्रक्रिया के बारे में पूछें!">
+                    Hello! I'm here to help with registration. Ask me about required documents or the process!
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbotInput" placeholder="Type your question..." data-en="Type your question..." data-hi="अपना प्रश्न टाइप करें...">
+                <button onclick="sendMessage()" data-en="Send" data-hi="भेजें">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentLang = 'en';
+        let currentTheme = 'light';
+
+        function toggleTheme() {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.body.setAttribute('data-theme', currentTheme);
+            document.querySelector('.theme-icon').textContent = currentTheme === 'light' ? '🌙' : '☀️';
+            localStorage.setItem('theme', currentTheme);
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'hi' : 'en';
+            document.querySelectorAll('[data-en][data-hi]').forEach(el => {
+                el.textContent = el.getAttribute(`data-${currentLang}`);
+            });
+            document.querySelector('.lang-text').textContent = currentLang === 'en' ? 'हिं' : 'EN';
+            localStorage.setItem('language', currentLang);
+        }
+
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+            document.querySelector('.hamburger').classList.toggle('active');
+        }
+
+        // Load saved preferences
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const savedLang = localStorage.getItem('language') || 'en';
+            
+            if (savedTheme === 'dark') toggleTheme();
+            if (savedLang === 'hi') toggleLanguage();
+        });
+
+        function toggleChatbot() {
+            const container = document.getElementById('chatbotContainer');
+            container.style.display = container.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatbotInput');
+            const messages = document.getElementById('chatbotMessages');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.textContent = message;
+            messages.appendChild(userMsg);
+            
+            input.value = '';
+            
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'message bot';
+                botMsg.textContent = getBotResponse(message);
+                messages.appendChild(botMsg);
+                messages.scrollTop = messages.scrollHeight;
+            }, 1000);
+            
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function getBotResponse(message) {
+            const msg = message.toLowerCase();
+            
+            if (msg.includes('document') || msg.includes('required') || msg.includes('need')) {
+                return currentLang === 'en' 
+                    ? 'You need: Aadhaar Card, Kisan ID Card, mobile number, and address details. All fields marked with * are mandatory.'
+                    : 'आपको चाहिए: आधार कार्ड, किसान आईडी कार्ड, मोबाइल नंबर, और पता विवरण। * से चिह्नित सभी फ़ील्ड अनिवार्य हैं।';
+            }
+            
+            if (msg.includes('otp') || msg.includes('verification')) {
+                return currentLang === 'en' 
+                    ? 'OTP will be sent to your Aadhaar registered mobile number. Enter any 6-digit number for demo purposes.'
+                    : 'OTP आपके आधार पंजीकृत मोबाइल नंबर पर भेजा जाएगा। डेमो के लिए कोई भी 6-अंकीय संख्या दर्ज करें।';
+            }
+            
+            if (msg.includes('pincode') || msg.includes('district')) {
+                return currentLang === 'en' 
+                    ? 'Enter your 6-digit pincode and the district will auto-populate. If not found, you can enter manually.'
+                    : '6-अंकीय पिनकोड दर्ज करें और जिला अपने आप भर जाएगा। यदि नहीं मिला, तो आप मैन्युअल रूप से दर्ज कर सकते हैं।';
+            }
+            
+            return currentLang === 'en' 
+                ? 'I can help with registration requirements, OTP verification, and form filling. What do you need help with?'
+                : 'मैं पंजीकरण आवश्यकताओं, OTP सत्यापन और फॉर्म भरने में मदद कर सकता हूं। आपको किस चीज़ में मदद चाहिए?';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('chatbotInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        });
+
+        // Comprehensive pincode to district mapping
+        const pincodeRanges = {
+            // Delhi
+            '110': 'New Delhi',
+            '1100': { '01-49': 'Central Delhi', '50-99': 'West Delhi' },
+            
+            // Mumbai
+            '400': 'Mumbai',
+            '401': 'Thane',
+            '402': 'Raigad',
+            '403': 'South Goa',
+            '404': 'Ratnagiri',
+            
+            // Bangalore
+            '560': 'Bangalore Urban',
+            '561': 'Bangalore Rural',
+            '562': 'Chikkaballapur',
+            
+            // Chennai
+            '600': 'Chennai',
+            '601': 'Kanchipuram',
+            '602': 'Tiruvallur',
+            '603': 'Kanchipuram',
+            
+            // Kolkata
+            '700': 'Kolkata',
+            '701': 'North 24 Parganas',
+            '702': 'South 24 Parganas',
+            '703': 'Hooghly',
+            
+            // Hyderabad
+            '500': 'Hyderabad',
+            '501': 'Rangareddy',
+            '502': 'Medak',
+            '503': 'Nizamabad',
+            
+            // Pune
+            '411': 'Pune',
+            '412': 'Pune',
+            '413': 'Solapur',
+            '414': 'Ahmed Nagar',
+            
+            // Ahmedabad
+            '380': 'Ahmedabad',
+            '381': 'Gandhinagar',
+            '382': 'Sabarkantha',
+            '383': 'Banaskantha',
+            
+            // Jaipur
+            '302': 'Jaipur',
+            '303': 'Dausa',
+            '304': 'Tonk',
+            '305': 'Ajmer',
+            
+            // Other major cities
+            '226': 'Lucknow',
+            '160': 'Chandigarh',
+            '201': 'Ghaziabad',
+            '122': 'Gurgaon',
+            '800': 'Patna',
+            '751': 'Bhubaneswar',
+            '695': 'Thiruvananthapuram',
+            '781': 'Guwahati',
+            '492': 'Raipur',
+            '462': 'Bhopal',
+            '834': 'Ranchi',
+            '171': 'Shimla',
+            '180': 'Jammu',
+            '194': 'Srinagar',
+            '799': 'Agartala',
+            '796': 'Aizawl',
+            '797': 'Kohima',
+            '793': 'Shillong',
+            '795': 'Imphal',
+            '737': 'Gangtok'
+        };
+
+        function getDistrictFromPincode(pincode) {
+            if (pincode.length !== 6) return null;
+            
+            // Check 3-digit prefix first
+            const prefix3 = pincode.substring(0, 3);
+            if (pincodeRanges[prefix3]) {
+                if (typeof pincodeRanges[prefix3] === 'string') {
+                    return pincodeRanges[prefix3];
+                }
+            }
+            
+            // Special handling for Delhi
+            if (pincode.startsWith('110')) {
+                const lastTwo = parseInt(pincode.substring(4, 6));
+                if (lastTwo >= 1 && lastTwo <= 49) {
+                    return 'Central Delhi';
+                } else if (lastTwo >= 50 && lastTwo <= 99) {
+                    return 'West Delhi';
+                }
+                return 'New Delhi';
+            }
+            
+            // Fallback to common districts based on state codes
+            const stateMapping = {
+                '1': 'Delhi', '2': 'Haryana', '3': 'Punjab', '4': 'Rajasthan',
+                '5': 'Uttar Pradesh', '6': 'Uttarakhand', '7': 'Himachal Pradesh',
+                '8': 'Jammu and Kashmir', '9': 'Ladakh', '10': 'Bihar',
+                '11': 'Jharkhand', '12': 'Odisha', '13': 'Chhattisgarh',
+                '14': 'Madhya Pradesh', '15': 'Gujarat', '16': 'Maharashtra',
+                '17': 'Goa', '18': 'Karnataka', '19': 'Kerala', '20': 'Tamil Nadu',
+                '21': 'Andhra Pradesh', '22': 'Telangana', '23': 'West Bengal',
+                '24': 'Assam', '25': 'Meghalaya', '26': 'Tripura', '27': 'Mizoram',
+                '28': 'Manipur', '29': 'Nagaland', '30': 'Arunachal Pradesh', '31': 'Sikkim'
+            };
+            
+            const firstDigit = pincode.charAt(0);
+            const stateName = stateMapping[firstDigit];
+            
+            return stateName ? `${stateName} District` : null;
+        }
+
+        // Auto-populate district based on pincode
+        document.getElementById('pincode').addEventListener('input', function() {
+            const pincode = this.value;
+            const districtField = document.getElementById('district');
+            
+            if (pincode.length === 6) {
+                const district = getDistrictFromPincode(pincode);
+                
+                if (district) {
+                    districtField.value = district;
+                    districtField.style.background = 'rgba(76, 175, 80, 0.1)';
+                    districtField.style.borderColor = 'var(--success)';
+                } else {
+                    districtField.value = '';
+                    districtField.placeholder = 'District not found for this pincode';
+                    districtField.style.background = 'rgba(186, 26, 26, 0.1)';
+                    districtField.style.borderColor = 'var(--error)';
+                }
+            } else {
+                districtField.value = '';
+                districtField.placeholder = 'Enter your district';
+                districtField.style.background = 'var(--surface-variant)';
+                districtField.style.borderColor = 'var(--outline-variant)';
+            }
+        });
+
+        let otpSent = false;
+        let otpVerified = false;
+
+        // Check if all required fields are filled
+        function checkFormCompletion() {
+            const requiredFields = ['name', 'phone', 'adhaar', 'kisaan', 'address', 'district', 'state', 'pincode'];
+            const allFilled = requiredFields.every(field => document.getElementById(field).value.trim() !== '');
+            
+            if (allFilled && !otpSent) {
+                document.getElementById('sendOtpBtn').style.display = 'block';
+                document.getElementById('registerBtn').style.display = 'none';
+            }
+        }
+
+        // Add event listeners to required fields
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const savedLang = localStorage.getItem('language') || 'en';
+            
+            // Apply saved theme
+            if (savedTheme === 'dark') {
+                currentTheme = 'dark';
+                document.body.setAttribute('data-theme', 'dark');
+                document.querySelector('.theme-icon').textContent = '☀️';
+            }
+            
+            // Apply saved language
+            if (savedLang === 'hi') {
+                currentLang = 'hi';
+                document.querySelectorAll('[data-en][data-hi]').forEach(el => {
+                    el.textContent = el.getAttribute('data-hi');
+                });
+                document.querySelector('.lang-text').textContent = 'EN';
+            }
+
+            const requiredFields = ['name', 'phone', 'adhaar', 'kisaan', 'address', 'district', 'state', 'pincode'];
+            requiredFields.forEach(field => {
+                document.getElementById(field).addEventListener('input', checkFormCompletion);
+            });
+        });
+
+        document.getElementById('sendOtpBtn').addEventListener('click', function() {
+            const phone = document.getElementById('phone').value;
+            const message = currentLang === 'en' 
+                ? `OTP sent to ${phone}. Please enter the 6-digit code.`
+                : `OTP ${phone} पर भेजा गया। कृपया 6-अंकीय कोड दर्ज करें।`;
+            alert(message);
+            
+            document.getElementById('otpSection').style.display = 'block';
+            document.getElementById('sendOtpBtn').style.display = 'none';
+            document.getElementById('registerBtn').style.display = 'block';
+            document.getElementById('registerBtn').textContent = currentLang === 'en' ? '✅ Verify & Register' : '✅ सत्यापित करें और पंजीकरण करें';
+            otpSent = true;
+        });
+
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (otpSent && !otpVerified) {
+                const otp = document.getElementById('otp').value;
+                if (otp.length === 6) {
+                    otpVerified = true;
+                    
+                    // Save user data
+                    const userData = {
+                        name: document.getElementById('name').value,
+                        phone: document.getElementById('phone').value,
+                        email: document.getElementById('email').value || '',
+                        registeredAt: new Date().toISOString()
+                    };
+                    localStorage.setItem('userData', JSON.stringify(userData));
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('userRegistered', 'true');
+                    
+                    const message = currentLang === 'en' 
+                        ? 'Registration completed successfully! Redirecting to home page...'
+                        : 'पंजीकरण सफलतापूर्वक पूर्ण! होम पेज पर रीडायरेक्ट कर रहे हैं...';
+                    alert(message);
+                    
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1000);
+                } else {
+                    const message = currentLang === 'en' 
+                        ? 'Please enter a valid 6-digit OTP.'
+                        : 'कृपया एक वैध 6-अंकीय OTP दर्ज करें।';
+                    alert(message);
+                }
+            } else {
+                checkFormCompletion();
+            }
+        });
+    </script>
+</body>
+</html>

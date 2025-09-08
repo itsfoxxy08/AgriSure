@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Complaint - AgriSure</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <img src="logo.jpg" alt="AgriSure Logo" class="logo-img">
+            <span data-en="AgriSure" data-hi="एग्रीश्योर">AgriSure</span>
+        </a>
+        
+        <div class="nav-menu">
+            <a href="index.html" class="nav-link"><span data-en="Home" data-hi="होम">Home</span></a>
+            <a href="schemes.html" class="nav-link"><span data-en="Gov-Schemes" data-hi="सरकारी योजनाएं">Gov-Schemes</span></a>
+            <a href="payment.html" class="nav-link"><span data-en="Payments" data-hi="भुगतान">Payments</span></a>
+            <a href="track.html" class="nav-link"><span data-en="Track Payments" data-hi="भुगतान ट्रैक करें">Track Payments</span></a>
+            <a href="complaint.html" class="nav-link"><span data-en="Complaints" data-hi="शिकायतें">Complaints</span></a>
+            <a href="register.html" class="nav-link" id="registerLink"><span data-en="Register" data-hi="पंजीकरण">Register</span></a>
+            <a href="profile.html" class="nav-link" id="profileLink" style="display:none;"><span data-en="Profile" data-hi="प्रोफाइल">Profile</span></a>
+        </div>
+        
+        <div class="nav-controls">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <span class="theme-icon">🌙</span>
+            </button>
+            <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">
+                <span class="lang-text">हिं</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="complaint-container">
+            <h1>📝 <span data-en="File Your Complaint" data-hi="अपनी शिकायत दर्ज करें">File Your Complaint</span></h1>
+            
+            <form class="complaint-form" onsubmit="submitComplaint(event)">
+                <div class="form-group">
+                    <label for="farmerName"><span data-en="Full Name" data-hi="पूरा नाम">Full Name</span> *</label>
+                    <input type="text" id="farmerName" name="farmerName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="farmerPhone"><span data-en="Phone Number" data-hi="फोन नंबर">Phone Number</span> *</label>
+                    <input type="tel" id="farmerPhone" name="farmerPhone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="farmerAddress"><span data-en="Address" data-hi="पता">Address</span> *</label>
+                    <textarea id="farmerAddress" name="farmerAddress" rows="3" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="complaintCategory"><span data-en="Complaint Category" data-hi="शिकायत श्रेणी">Complaint Category</span> *</label>
+                    <select id="complaintCategory" name="complaintCategory" required>
+                        <option value=""><span data-en="Select Category" data-hi="श्रेणी चुनें">Select Category</span></option>
+                        <option value="crop-damage"><span data-en="Crop Damage" data-hi="फसल क्षति">Crop Damage</span></option>
+                        <option value="irrigation"><span data-en="Irrigation Issues" data-hi="सिंचाई समस्याएं">Irrigation Issues</span></option>
+                        <option value="subsidy"><span data-en="Subsidy Problems" data-hi="सब्सिडी समस्याएं">Subsidy Problems</span></option>
+                        <option value="market-access"><span data-en="Market Access" data-hi="बाजार पहुंच">Market Access</span></option>
+                        <option value="loan-issues"><span data-en="Loan Issues" data-hi="ऋण समस्याएं">Loan Issues</span></option>
+                        <option value="other"><span data-en="Other" data-hi="अन्य">Other</span></option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="complaintTitle"><span data-en="Complaint Title" data-hi="शिकायत शीर्षक">Complaint Title</span> *</label>
+                    <input type="text" id="complaintTitle" name="complaintTitle" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="complaintDescription"><span data-en="Detailed Description" data-hi="विस्तृत विवरण">Detailed Description</span> *</label>
+                    <textarea id="complaintDescription" name="complaintDescription" rows="6" required placeholder="Please describe your problem in detail..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="urgencyLevel"><span data-en="Urgency Level" data-hi="तात्कालिकता स्तर">Urgency Level</span> *</label>
+                    <select id="urgencyLevel" name="urgencyLevel" required>
+                        <option value="low"><span data-en="Low" data-hi="कम">Low</span></option>
+                        <option value="medium"><span data-en="Medium" data-hi="मध्यम">Medium</span></option>
+                        <option value="high"><span data-en="High" data-hi="उच्च">High</span></option>
+                        <option value="critical"><span data-en="Critical" data-hi="गंभीर">Critical</span></option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="supportingDocs"><span data-en="Supporting Documents" data-hi="सहायक दस्तावेज">Supporting Documents</span></label>
+                    <input type="file" id="supportingDocs" name="supportingDocs" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+                    <small><span data-en="Upload photos, documents, or other evidence (optional)" data-hi="फोटो, दस्तावेज, या अन्य सबूत अपलोड करें (वैकल्पिक)">Upload photos, documents, or other evidence (optional)</span></small>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span data-en="Submit Complaint" data-hi="शिकायत जमा करें">Submit Complaint</span>
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        function submitComplaint(event) {
+            event.preventDefault();
+            
+            // Generate complaint ID
+            const complaintId = 'CMP' + Date.now().toString().slice(-8);
+            
+            // Show success message
+            alert(`Complaint submitted successfully!\nComplaint ID: ${complaintId}\nYou will receive updates on your registered phone number.`);
+            
+            // Reset form
+            event.target.reset();
+        }
+
+        function toggleLanguage() {
+            const currentLang = document.documentElement.lang === 'hi' ? 'en' : 'hi';
+            document.documentElement.lang = currentLang;
+            
+            document.querySelectorAll('[data-en][data-hi]').forEach(element => {
+                element.textContent = currentLang === 'hi' ? element.getAttribute('data-hi') : element.getAttribute('data-en');
+            });
+            
+            // Update language button text
+            const langText = document.querySelector('.lang-text');
+            if (langText) {
+                langText.textContent = currentLang === 'en' ? 'हिं' : 'EN';
+            }
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            const themeIcon = document.querySelector('.theme-icon');
+            themeIcon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Load saved theme
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            
+            const themeIcon = document.querySelector('.theme-icon');
+            if (themeIcon) {
+                themeIcon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+            }
+            
+            // Check registration status
+            checkRegistrationStatus();
+        });
+
+        // Check registration status and toggle register/profile buttons
+        function checkRegistrationStatus() {
+            const isRegistered = localStorage.getItem('userRegistered') === 'true';
+            const registerLink = document.getElementById('registerLink');
+            const profileLink = document.getElementById('profileLink');
+            
+            if (isRegistered) {
+                registerLink.style.display = 'none';
+                profileLink.style.display = 'block';
+            } else {
+                registerLink.style.display = 'block';
+                profileLink.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
