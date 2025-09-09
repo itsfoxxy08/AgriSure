@@ -12,10 +12,10 @@ A comprehensive web portal for farmers to access government schemes, make secure
 - Responsive design
 
 ## 👥 Team Creators
-- **[Member 1 Name]** - Frontend Development & UI/UX Design
-- **[Member 2 Name]** - JavaScript Functionality & Chatbot
-- **[Member 3 Name]** - CSS Styling & Responsive Design
-- **[Member 4 Name]** - Content & Localization
+- **Vikas Choudhary** - Frontend Development & UI/UX Design
+- **Sudeep Kushwaha** - JavaScript Functionality & Chatbot
+- **Vikas Choudhary** - CSS Styling & Responsive Design
+- **Abhishek** - Content & Localization
 
 ## 🚀 Live Demo
 [GitHub Pages Link]
