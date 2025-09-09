@@ -1,4 +1,4 @@
-# Farmer Portal - Secure Agricultural Transactions
+# AgriSure - Secure Agricultural Transactions
 
 A comprehensive web portal for farmers to access government schemes, make secure payments, and connect with local vendors.
 
