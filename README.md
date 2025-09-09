@@ -18,7 +18,7 @@ A comprehensive web portal for farmers to access government schemes, make secure
 - **Abhishek** - Content & Localization
 
 ## 🚀 Live Demo
-[GitHub Pages Link]
+Coming Soon!
 
 ## 💻 Tech Stack
 - HTML5
